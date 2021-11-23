@@ -144,16 +144,20 @@ address {
  * 1. Turns on lining, proportional numerals without clarified zeroes
  * TODO: Additional input modes https://developer.mozilla.org/en/docs/Web/HTML/Element/Input#attr-inputmode
  */
+$input-types: ("color", "date", "datetime", "datetime-local", "number", "range", "tel", "week");
+$input-modes: ("none", "text", "tel", "url", "numeric", "decimal", "search");
 
-input[type="color"],
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="number"],
-input[type="range"],
-input[type="tel"],
-input[type="week"] {
-  font-feature-settings: "kern" 0, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 0, "lnum" 1, "zero" 0; /* 1. */
+input {
+  @each $type in $input-types {
+    &[type="#{$type}"] {
+      font-feature-settings: "kern" 0, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 0, "lnum" 1, "zero" 0; /* 1. */
+    }
+  }
+  @each $mode in $input-modes {
+    &[inputmode="#{$mode}"] {
+      font-feature-settings: "kern" 0, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 0, "lnum" 1, "zero" 0; /* 1. */
+    }
+  }
 }
 
 /* Localisation

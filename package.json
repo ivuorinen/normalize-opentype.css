@@ -15,14 +15,18 @@
     "css"
   ],
   "scripts": {
-    "build-css": "node-sass normalize-opentype.scss normalize-opentype.css",
-    "build-prefix": "autoprefixer normalize-opentype.css",
+    "build-css": "sass --no-source-map normalize-opentype.scss normalize-opentype.css",
+    "build-prefix": "postcss -o normalize-opentype.css normalize-opentype.css",
     "build": "npm run build-css && npm run build-prefix",
-    "test": "open test/index.html"
+    "test-build-styles": "sass test/tests.scss test/tests.css && postcss -o test/tests.css test/tests.css",
+    "test": "npm run test-build-styles && open test/index.html"
   },
   "devDependencies": {
-    "normalize.css": "<4.0.0",
-    "node-sass": "~2.0.1",
-    "autoprefixer": "~4.0.0"
+    "autoprefixer": "10.4.0",
+    "cssnano": "^5.0.10",
+    "normalize.css": "8.0.1",
+    "postcss": "^8.3.11",
+    "postcss-cli": "^9.0.2",
+    "sass": "^1.43.4"
   }
 }
